@@ -164,6 +164,9 @@ const card = {
     needLogin?: boolean;
     shareTo?: string[];
     tagKeyArr?: string[];
+    checkedTasksNum?: number;
+    totalTasksNum?: number;
+    charactersNum?: number;
   }) {
     return request.post(API_URL + "/card", props);
   },
@@ -187,6 +190,9 @@ const card = {
     needLogin?: boolean;
     shareTo?: string[];
     tagKeyArr?: string[];
+    checkedTasksNum?: number;
+    totalTasksNum?: number;
+    charactersNum?: number;
   }) {
     return request.patch(API_URL + "/card", props);
   },
@@ -205,6 +211,7 @@ const card = {
   getCardList(props: {
     page: number;
     limit: number;
+    title?: string;
     type?: "all" | "inbox" | "star" | "today" | "mark" | "shareBy";
     tagKey?: string;
     isTrash?: boolean;
@@ -216,6 +223,44 @@ const card = {
   },
   dump() {
     return request.post(API_URL + "/trash/clear ");
+  },
+  duplicate(cardKey: string) {
+    return request.post(API_URL + "/card/copy", { cardKey });
+  },
+  share(cardKey: string, toUser: string) {
+    return request.post(API_URL + "/card/share", { cardKey, toUser });
+  },
+  deleteShare(cardKey: string, toUser: string) {
+    return request.delete(API_URL + "/card/sharer", { cardKey, toUser });
+  },
+  exitShare(cardKey: string) {
+    return request.delete(API_URL + "/card/sharer/exit", { cardKey });
+  },
+  getShareList(cardKey: string) {
+    return request.get(API_URL + "/card/sharer", { cardKey });
+  },
+
+  comment(cardKey: string, content: string) {
+    return request.post(API_URL + "/comment", { cardKey, content });
+  },
+  deleteComment(commentKey: string) {
+    return request.delete(API_URL + "/comment", { commentKey });
+  },
+  getCommentList(cardKey: string) {
+    return request.get(API_URL + "/comment", { cardKey });
+  },
+
+  score(cardKey: string, score: number) {
+    return request.post(API_URL + "/comment/score", { cardKey, score });
+  },
+  editScore(scoreKey: string, score: number) {
+    return request.patch(API_URL + "/comment/score", { scoreKey, score });
+  },
+  deleteScore(scoreKey: string) {
+    return request.delete(API_URL + "/comment/score", { scoreKey });
+  },
+  getScoreList(cardKey: string) {
+    return request.get(API_URL + "/comment/score", { cardKey });
   },
 };
 

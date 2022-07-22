@@ -1,7 +1,7 @@
 {
-  "name": "Notes Extension",
+  "name": "Notes Web Clipper",
   "version": "0.0.1",
-  "description": "web clips",
+  "description": "Use our Web Clipper to save any website into Notes.",
   "homepage_url": "https://notes.working.cn",
   "manifest_version": 3,
   "icons": {

@@ -86,12 +86,13 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 </script>
 <style scoped>
 .icon {
-  width: 250px;
+  width: 120px;
   height: 120px;
   background-image: url(/icons/logo.svg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: top;
+  margin-bottom: 25px;
 }
 .login {
   width: 100%;

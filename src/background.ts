@@ -19,7 +19,7 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
   type = "link";
   analysis = "";
   selectionText = info.selectionText || "";
-
+  
   chrome.storage.local.get(["user"], async function (result) {
     const user = result.user;
     const token = user ? user.token : null;

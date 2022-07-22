@@ -34,3 +34,7 @@ yarn
 ```
 yarn dev
 ```
+
+## 调试
+在浏览器的插件列表页面，点击相应插件的【查看视图
+Service Worker】
