@@ -1,25 +1,16 @@
 import api from "./utils/api";
 
-let token,
-  type = "link",
-  analysis = "",
-  selectionText = "";
-
 chrome.runtime.onInstalled.addListener(function () {
   chrome.contextMenus.removeAll(function () {
     // 创建右键菜单
-    createContextMenus("保存网址", "clip-url");
-    createContextMenus("保存选中", "clip-selected");
     createContextMenus("保存正文", "clip-content");
+    createContextMenus("保存选中", "clip-selected");
+    createContextMenus("保存网址", "clip-url");
   });
 });
 
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
   // 右键获取网页相关内容
-  type = "link";
-  analysis = "";
-  selectionText = info.selectionText || "";
-  
   chrome.storage.local.get(["user"], async function (result) {
     const user = result.user;
     const token = user ? user.token : null;

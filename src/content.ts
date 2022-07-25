@@ -10,7 +10,9 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     // 使用Readability获得页面内容
     const documentClone = document.cloneNode(true);
     // @ts-ignore
-    const article = new Readability(documentClone).parse();
+    const article = new Readability(documentClone, {
+      keepClasses: true,
+    }).parse();
 
     // 摘要
     options.summary = article.excerpt;
@@ -21,6 +23,11 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     } else if (message.clipType === "clip-content") {
       // 采集全文
       options.content = `<h1>${options.title}</h1>` + article.content;
+    } else if (message.clipType === "clip-url") {
+      // 保存网址
+      options.content =
+        `<h1>${options.title}</h1>` +
+        `<a target="_blank" rel="url" href="${message.url}">${message.url}</a>`;
     }
 
     chrome.runtime.sendMessage({

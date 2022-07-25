@@ -19,7 +19,7 @@ import UserInfo from "./UserInfo.vue";
   flex: 1;
   overflow: auto;
   background-image: url(/icons/logo.svg);
-  background-size: 88%;
+  background-size: 48%;
   background-position: center;
 	background-repeat: no-repeat;
 }

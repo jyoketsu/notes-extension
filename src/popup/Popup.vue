@@ -10,22 +10,33 @@ import Login from "./Login.vue";
 import { useStore } from "./store";
 import Picks from "./Picks.vue";
 import "element-plus/es/components/message/style/css";
+const isDev = import.meta.env.DEV;
 
 const store = useStore();
 const user = computed(() => store.state.auth.user);
 
 onMounted(() => {
-  if (!chrome || !chrome.storage) return;
-  chrome.storage.local.get(["user"], function (result) {
-    if (result.user) {
-      store.dispatch("auth/setUser", result.user);
+  if (isDev) {
+    const userStr = localStorage.getItem("user");
+    const user = userStr ? JSON.parse(userStr) : null;
+    if (user) {
+      store.dispatch("auth/setUser", user);
     }
-  });
+  } else {
+    if (!chrome || !chrome.storage) return;
+    chrome.storage.local.get(["user"], function (result) {
+      if (result.user) {
+        store.dispatch("auth/setUser", result.user);
+      }
+    });
+  }
 });
 
 watch(user, (newVal) => {
   if (newVal) {
-    chrome.storage.local.set({ user: newVal }, function () {});
+    isDev
+      ? localStorage.setItem("user", JSON.stringify(newVal))
+      : chrome.storage.local.set({ user: newVal }, function () {});
   }
 });
 </script>
