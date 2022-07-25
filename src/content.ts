@@ -3,7 +3,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     // 卡片参数
     let options: any = {
       title: message.title,
-      url: message.url,
+      link: message.url,
       icon: message.favIconUrlf,
     };
 
