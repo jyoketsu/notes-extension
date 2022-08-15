@@ -14,6 +14,8 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
       keepClasses: true,
     }).parse();
 
+    console.log("---article---", article);
+
     // 摘要
     options.summary = article.excerpt;
 

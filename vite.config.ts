@@ -34,8 +34,12 @@ export default defineConfig({
     copy({
       targets: [
         { src: "src/manifest.json", dest: "dist" },
+        // {
+        //   src: "node_modules/@mozilla/readability/Readability.js",
+        //   dest: "dist",
+        // },
         {
-          src: "node_modules/@mozilla/readability/Readability.js",
+          src: "Readability.js",
           dest: "dist",
         },
       ],
