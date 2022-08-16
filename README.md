@@ -10,7 +10,7 @@
 
 ## 简介
 
-Notes Extension 是一个网络采集项目。基于 `vue3 + TypeScript + vue-router + vuex + elementPlus + vite` 开发。
+Notes Extension 是Notes项目的网络采集项目。基于 `vue3 + TypeScript + vue-router + vuex + elementPlus + vite` 开发。
 
 ## 使用技术
 
@@ -39,6 +39,8 @@ yarn dev
 ```
 yarn build
 ```
+chrome->扩展程序->加载已解压的扩展程序： `dist`目录
+
 ## 调试
 在浏览器的插件列表页面，点击相应插件的【查看视图
 Service Worker】
