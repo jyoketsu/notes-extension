@@ -1,4 +1,4 @@
-import { removeImgP } from "./utils/util";
+import { removeImgP, removeImgP2 } from "./utils/util";
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   if (message.type == "clip") {
@@ -24,7 +24,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
       options.content = `<h1>${options.title}</h1>` + getSelectedContents();
     } else if (message.clipType === "clip-content") {
       // 采集全文
-      const content = removeImgP(article.content);
+      const content = removeImgP2(article.content);
       options.content = `<h1>${options.title}</h1>` + content;
     } else if (message.clipType === "clip-url") {
       // 保存网址
